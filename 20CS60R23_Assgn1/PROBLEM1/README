@@ -1,0 +1,35 @@
+OPERATING SYSTEM: UBUNTU 20.04
+
+
+***SERVER PROGRAM INSTRUCTIONS***
+
+COMPILE: 
+gcc server.c -o server
+
+RUN:
+./server <PORT NUMBER>
+
+RUN example:
+./server 8080
+
+The command line arguments are as follows:
+argv[1] - <PORT NUMBER>
+
+
+***CLIENT PROGRAM INSTRUCTIONS***
+
+COMPILE: 
+gcc client.c -o client
+
+RUN:
+./client localhost <PORT NUMBER>
+
+RUN example:
+./client localhost 8080
+
+The command line arguments are as follows:
+argv[1] - localhost
+argv[2] - <PORT NUMBER>
+
+
+The server, once started, keeps on waiting for the same client to reconnect.

@@ -1,0 +1,49 @@
+OPERATING SYSTEM: UBUNTU 20.04
+
+
+***SERVER PROGRAM INSTRUCTIONS***
+
+COMPILE: 
+gcc server.c -lm -o server
+
+RUN:
+./server <filename> <PORT NUMBER>
+
+RUN example:
+./server input.txt 8080
+
+The command line arguments are as follows:
+argv[1] - <FILE NAME>
+argv[2] - <PORT NUMBER>
+
+
+***CLIENT PROGRAM INSTRUCTIONS***
+
+COMPILE: 
+gcc client.c -o client
+
+RUN:
+./client localhost <PORT NUMBER>
+
+RUN example:
+./client localhost 8080
+
+The command line arguments are as follows:
+argv[1] - localhost
+argv[2] - <PORT NUMBER>
+
+
+***CONSIDERATIONS***
+1) The client takes into two types of queries from the user:
+   (i) Evaluate <k>
+   (ii) Writex <exp> 
+
+There should be a SPACE between EValuate and <K> and also between Writex and <exp> 
+Here, K is an integer value and exp is an expression entered by the user.
+The value of K starts from 1.
+
+2) The server, once started, keeps on waiting for the same client to reconnect.
+
+3) Expressions such as, X, (X), ((X)), (((X))) are considered the same. Corner (extreme) parenthesis keeps the expression same.
+
+4) Presence or absence of space in between keeps the expressions same.
