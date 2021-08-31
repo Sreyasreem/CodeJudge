@@ -1,0 +1,69 @@
+OPERATING SYSTEM: UBUNTU 20.04
+
+There are two different directories: Server directory and client directory
+
+***SERVER PROGRAM INSTRUCTIONS***
+
+Open a terminal in the server directory
+
+COMPILE: 
+gcc server.c -o server
+
+RUN:
+./server <PORT NUMBER>
+
+RUN example:
+./server 8080
+
+The command line arguments are as follows:
+argv[1] - <PORT NUMBER>
+
+
+***CLIENT PROGRAM INSTRUCTIONS***
+
+Open a terminal in the client directory
+EVERY NEW CLIENT MUST BE RUN FROM A DIFFERENT DIRECTORY
+
+COMPILE: 
+gcc client.c -o client
+
+RUN:
+./client localhost <PORT NUMBER>
+
+RUN example:
+./client localhost 8080
+
+The command line arguments are as follows:
+argv[1] - localhost
+argv[2] - <PORT NUMBER>
+
+***ERRORS HANDLED***
+
+1)Connection error in client
+
+2)Socket closing in client after getting disconnected from server
+
+3)File closing in both client and server using fclose(fp)
+
+4)If client issues RETR <file> and that file is already present at client directory. For example: file.txt is already present at the client directory and client issues the command RETR file.txt. In such a case client sends an apology message to the server and the file transfer is rejected.
+
+5)If client issues STOR <file> and that file is already present at server directory. For example: file.txt is already present at the server directory and client issues the command STOR file.txt. In such a case server sends an appropriate message to the client and the file transfer operation is rejected.
+
+6)If client issues DELE <file> and that file is unavailable at server directory. For example: file.txt is not present at the server directory and client issues the command DELE file.txt. In such a case server sends an appropriate message to the client and the file deletion operation is rejected.
+
+7)If client issues RETR <file> and that file is unavailable at server directory. For example: file.txt is not present at the server directory and client issues the command RETR file.txt. In such a case server sends an appropriate message to the client and the file transfer operation is rejected.
+
+8)If client issues STOR <file> and that file is unavailable present at client directory. For example: file.txt, the file to be transferred to the server, is not present at the client directory and client issues the command STOR file.txt. In such a case client sends an apology message to the server and the file transfer operation is rejected.
+
+9)Invalid commands: Server code counts the number of tokens in the command received from the client. If there are one or two tokens, then it might be a valid command. If there are zero or more than two tokens then it is definitely an invalid command. If it contains only one token, then it must be either LIST or QUIT otherwise server reports it as an invalid command. If there are two tokens, then the command must have first token as: RETR, STOR, and DELE. The second token being the filename. If there is any other command other than these three mentioned, then the server reports it as an error. There can be leading and trailing tabs spaces in the command issued by the client. Commands, for example: LIST file.txt, QUIT file.txt, STOR, RETR, DELE etc are considered invalid. The commands are case-sensitive. Hence, commands for example: list, quit, dele file.c, stor file.txt, retr file.txt etc are considered invalid commands.
+
+
+10)Error in creating socket file descriptor in server
+
+11)Binding the socket error in server
+
+12)Listening error in server. For example: A connection request arrives and the queue is full
+
+13)Error in implementing the select system call to accept connections in non-blocking mode
+
+14)Directory closing in server using closedir(dir) after reading the contents
